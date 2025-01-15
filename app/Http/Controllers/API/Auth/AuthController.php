@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers\API\Auth;
 
-use App\Http\Controllers\Controller;
 use App\Models\User;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\JsonResponse;
+use App\Mail\sendOTPResetPassword;
 use Tymon\JWTAuth\Facades\JWTAuth;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
+
 class AuthController extends Controller
 {
 
@@ -29,10 +32,8 @@ class AuthController extends Controller
             ], 422);
         }
 
-        // Generate a 4-digit OTP
         $otp = rand(1000, 9999);
-// dd($otp);
-        // Create the user but set is_verified to false
+
         $user = User::create([
             'name'        => $request->name,
             'email'       => $request->email,
@@ -41,13 +42,12 @@ class AuthController extends Controller
             'is_verified' => false,
         ]);
 
-        // For testing purposes, return the OTP in the response
         return response()->json([
             'status'    => true,
             'message'   => 'OTP generated. Please verify to complete registration.',
             'data'      => [
                 'user_id' => $user->id,
-                'otp'     => $otp  // Include OTP in the response for testing
+                'otp'     => $otp  
             ],
             'code'      => '201',
         ], 201);
@@ -75,8 +75,8 @@ class AuthController extends Controller
         if ($user && $user->otp == $request->otp) {
             // Verify the user
             $user->is_verified = true;
-            $user->otp = null; // Clear the OTP after verification
-            $user->otp_verified_at = now(); // Set the current time for OTP verification
+            $user->otp = null; 
+            $user->otp_verified_at = now(); 
             $user->save();
 
             return response()->json([
@@ -108,18 +108,17 @@ class AuthController extends Controller
             ], 403);
         }
 
-        // Find the user and check if verified
         $user = User::where('email', $request->email)->first();
-        if ($user && !$user->is_verified) {
-            return response()->json([
-                'status' => false,
-                'message' => 'Account not verified. Please verify OTP.',
-                'code' => '403',
-            ], 403);
-        }
+        // if ($user && !$user->is_verified) {
+        //     return response()->json([
+        //         'status' => false,
+        //         'message' => 'Account not verified. Please verify OTP.',
+        //         'code' => '403',
+        //     ], 403);
+        // }
 
-        // Attempt to authenticate
-        $token = auth()->guard('api')->attempt($validator->validated());
+        $token = auth()->guard('api')->attempt($request->all());
+
         if (!$token) {
             return response()->json([
                 'status' => false,
@@ -138,6 +137,28 @@ class AuthController extends Controller
             'code'       => '200',
         ], 200);
     }
+
+
+    public function forgetPassword(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|exist:users,email',
+        ]
+        );
+        if ($validator->fails()) {
+            return response()->json([
+                'status'=> false,
+                'message'=> $validator->errors(),
+                'code'=> '422',
+                ], 422);
+        }
+        $user = User::where('email', $request->email)->first();
+        if($user){
+            $otp = rand(1000,9999);
+            Mail::to($request->email)->send(new sendOTPResetPassword($otp));
+        }
+    }
+
 
 
     /**

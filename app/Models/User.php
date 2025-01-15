@@ -15,12 +15,12 @@ class User extends Authenticatable implements JWTSubject
 
     public function getJWTIdentifier()
     {
-        return $this->getKey();
+        return $this->getKey(); // Typically the primary key (e.g., id)
     }
 
     public function getJWTCustomClaims()
     {
-        return [];
+        return []; // Add custom claims if necessary
     }
 
     /**
