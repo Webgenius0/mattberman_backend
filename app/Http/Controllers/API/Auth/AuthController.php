@@ -53,7 +53,7 @@ class AuthController extends Controller
             'code'      => '201',
         ], 201);
     }
-
+ 
     // public function verifyOtp(Request $request)
     // {
     //     $validator = Validator::make($request->all(), [
@@ -136,6 +136,7 @@ class AuthController extends Controller
         
     }
 
+    
     public function forgetPassword(Request $request)
     {
         $validator = Validator::make($request->all(), [

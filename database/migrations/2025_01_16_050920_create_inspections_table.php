@@ -20,10 +20,10 @@ return new class extends Migration
             $table->integer('start_time');
             $table->integer('end_time');
             $table->string('tractor_category');
-            $table->integer('truck_no');
-            $table->string('odometer_reading');
+            $table->string('truck_no');
+            $table->string('odometer_reading')->nullable();
             $table->string('trailer_category');
-            $table->integer('trailer_no');
+            $table->string('trailer_no');
             $table->string('remark');
             $table->text('signature_image');
             $table->timestamps();
