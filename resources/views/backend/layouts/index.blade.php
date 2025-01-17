@@ -309,5 +309,4 @@
       </div>
     </script>
     <script class="empty-template" type="text/x-handlebars-template"><div class="EmptyMessage">Your Docu Driver!</div></script>
-  </div>
 @endsection

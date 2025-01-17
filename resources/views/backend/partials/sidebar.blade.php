@@ -23,9 +23,9 @@
               </ul>
             </li>
 
-            <li class="sidebar-list"><i class="fa fa-thumb-tack"></i><a class="sidebar-link sidebar-title link-nav" href="support-ticket.html"><i data-feather="users"> </i><span>Drivers</span></a></li>
+            <li class="sidebar-list"><i class="fa fa-thumb-tack"></i><a class="sidebar-link sidebar-title link-nav" href="{{route('show.all.drivers')}}"><i data-feather="users"> </i><span>Drivers</span></a></li>
 
-            <li class="sidebar-list"><i class="fa fa-thumb-tack"></i><a class="sidebar-link sidebar-title" href="javascript:void(0)"><i data-feather="box"></i><span class="">Settings</span></a>
+            <li class="sidebar-list"><i class="fa fa-thumb-tack"></i><a class="sidebar-link sidebar-title" href="javascript:void(0)"><i data-feather="settings"></i><span class="">Settings</span></a>
               <ul class="sidebar-submenu">
                 <li><a class=""  href="#">Edit Profile</a></li>
                 <li><a class="" href="#">Change Password</a></li>
