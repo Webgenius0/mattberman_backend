@@ -1,10 +1,10 @@
 <div class="sidebar-wrapper">
     <div>
-      <div class="logo-wrapper"><a href="index.html"><img class="img-fluid for-light" src="../assets/images/logo/logo.png" alt=""></a>
+      <div class="logo-wrapper"><a href="#"><img class="img-fluid for-light" src="{{asset('build/assets/logo/logo.png')}}" alt="" width="80px"></a>
         <div class="back-btn"><i data-feather="grid"></i></div>
         <div class="toggle-sidebar icon-box-sidebar"><i class="status_toggle middle sidebar-toggle" data-feather="grid"> </i></div>
       </div>
-      <div class="logo-icon-wrapper"><a href="index.html">
+      <div class="logo-icon-wrapper"><a href="#">
           <div class="icon-box-sidebar"><i data-feather="grid"></i></div></a></div>
       <nav class="sidebar-main">
         <div class="left-arrow" id="left-arrow"><i data-feather="arrow-left"></i></div>

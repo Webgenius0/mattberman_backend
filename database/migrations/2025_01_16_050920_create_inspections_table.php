@@ -26,6 +26,8 @@ return new class extends Migration
             $table->string('trailer_no');
             $table->string('remark');
             $table->text('signature_image');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

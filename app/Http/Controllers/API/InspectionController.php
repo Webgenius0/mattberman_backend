@@ -122,6 +122,7 @@ class InspectionController extends Controller
 
 
             $driver->email       = Auth::user()->email;
+            $driver->user_id = Auth::user()->id;
             $driver->carrier = $request->input('carrier');
             $driver->address = $request->input('address');
             $driver->date = $request->input('date');

@@ -1,11 +1,11 @@
 <div class="header-wrapper row m-0">
     <div class="header-logo-wrapper col-auto p-0">
       <div class="toggle-sidebar"><i class="status_toggle middle sidebar-toggle" data-feather="grid"> </i></div>
-      <div class="logo-header-main"><a href="index.html"><img class="img-fluid for-light img-100" src="../assets/images/logo/logo2.png" alt=""><img class="img-fluid for-dark" src="../assets/images/logo/logo.png" alt=""></a></div>
+      <div class="logo-header-main"><a href="#"><img class="img-fluid for-light img-100" src="{{asset('build/assets/logo/logo.png')}}" alt=""></a></div>
     </div>
     <div class="left-header col horizontal-wrapper ps-0">
       <div class="left-menu-header">
-        <ul class="app-list">
+        {{-- <ul class="app-list">
           <li class="onhover-dropdown">
             <div class="app-menu"> <i data-feather="folder-plus"></i></div>
             <ul class="onhover-show-div left-dropdown">
@@ -15,7 +15,7 @@
               <li> <a href="bookmark.html"> Bookmark</a></li>
             </ul>
           </li>
-        </ul>
+        </ul> --}}
         <ul class="header-left">
           <li class="onhover-dropdown"><span class="f-w-600">Dashboard</span><span><i class="middle" data-feather="chevron-down"></i></span>
             <ul class="onhover-show-div left-dropdown">
@@ -33,7 +33,11 @@
             <li><a href="#"><i data-feather="user"></i><span>Account</span></a></li>
             {{-- <li><a href="#"><i data-feather="mail"></i><span>Inbox</span></a></li> --}}
             <li><a href="#"><i data-feather="settings"></i><span>Settings</span></a></li>
-            <li><a href="#"><i data-feather="log-in"> </i><span>Log out</span></a></li>
+            <form action="{{route('logout')}}" method="post">
+              @csrf
+              {{-- <li><a href=""><i data-feather="log-in"> </i><span>Log out</span></a></li> --}}
+              <li><button><i data-feather="log-in"> </i><span>Log out</span></button></li>
+            </form>
           </ul>
         </li>
       </ul>
