@@ -29,11 +29,11 @@
                 <h4>Drivers</h4>
               </div>
             </div>
-            {{-- <p class="mb-0">Body contants.</p> --}}
             <div class="container mt-5">
                 <table id="data-table" class="table table-striped">
                     <thead>
                         <tr>
+                            <th>Name</th>
                             <th>Carrier</th>
                             <th>Address</th>
                             <th>Date</th>
@@ -41,17 +41,18 @@
                             <th>End Time</th>
                             <th>Tractor Category</th>
                             <th>Tractor No</th>
-                            {{-- <th>Start Time</th> --}}
                             <th>Odometer Reading</th>
                             <th>Trailer Category</th>
                             <th>Trailer No</th>
                             <th>Remark</th>
-                            {{-- <th>signature_image</th> --}}
+                            <th>Get PDF
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
                       @foreach ($allInspections as $inspection)
                       <tr>
+                        <td>{{$driverName->name}}</td>
                         <td>{{$inspection->carrier}}</td>
                         <td>{{$inspection->address}}</td>
                         <td>{{$inspection->date}}</td>
@@ -63,6 +64,9 @@
                         <td>{{$inspection->trailer_category}}</td>
                         <td>{{$inspection->trailer_no}}</td>
                         <td>{{$inspection->remark}}</td>
+                        <td>
+                          <a href="{{route('pdfInspection.web', ['id'=> $inspection->id])}}" class="btn btn-sm btn-primary"><i class="">Download</i></a>
+                        </td>
                       </tr>
                       @endforeach
                     </tbody>
@@ -88,30 +92,5 @@
 @endsection
 
 @push('script')
-
-{{-- <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        $('#data-table').DataTable({
-            processing: true,
-            serverSide: true,
-            ajax: '{{ route('inspection.details',) }}',
-            columns: [
-                { data: 'carrier', name: 'carrier' },
-                { data: 'address', name: 'address' },
-                { data: 'date', name: 'date' },
-                { data: 'start_time', name: 'start_time' },
-                { data: 'end_time', name: 'end_time' },
-                { data: 'tractor_category', name: 'tractor_category' },
-                { data: 'truck_no', name: 'truck_no' },
-                { data: 'odometer_reading', name: 'odometer_reading' },
-                { data: 'trailer_category', name: 'trailer_category' },
-                { data: 'trailer_no', name: 'trailer_no' },
-                { data: 'remark', name: 'namremarke' },
-                { data: 'email', name: 'email' },
-            ]
-        });
-    });
-   
-</script> --}}
 
 @endpush

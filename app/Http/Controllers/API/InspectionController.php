@@ -53,6 +53,7 @@ class InspectionController extends Controller
         $inspection = Inspection::create([
 
             'email'       => Auth::user()->email,
+            'user_id' => Auth::user()->id,
             'carrier'=> $request->input('carrier'),
             'address'=> $request->input('address'),
             'date'=> $request->input('date'),
@@ -163,6 +164,5 @@ class InspectionController extends Controller
                     'code'=> '502',
                     ],502);
                 }
-       
     }
 }

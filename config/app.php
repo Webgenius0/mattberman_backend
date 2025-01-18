@@ -26,6 +26,8 @@ return [
     |
     */
 
+
+
     'env' => env('APP_ENV', 'production'),
 
     /*
@@ -105,6 +107,12 @@ return [
         ),
     ],
 
+    // 'aliases' => [
+    //     ...
+    //         'File' => Illuminate\Support\Facades\File::class,
+    //     ],
+
+
     /*
     |--------------------------------------------------------------------------
     | Maintenance Mode Driver
@@ -122,5 +130,12 @@ return [
         'driver' => env('APP_MAINTENANCE_DRIVER', 'file'),
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
+
+
+  
+    // 'aliases' => [
+    // // ...
+    //     'PDF' => Barryvdh\DomPDF\Facade::class,
+    // ],
 
 ];

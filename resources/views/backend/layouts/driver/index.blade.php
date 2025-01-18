@@ -77,46 +77,4 @@
     });
    
 </script>
-
-{{-- <script>
-     function showDriverData(email) {
-            event.preventDefault();
-            swal({
-                title: `Are you sure?`,
-                text: "You want to show .",
-                buttons: true,
-                infoMode: true,
-            }).then((willStatusChange) => {
-                if (willStatusChange) {
-                    driverInspections(email);
-                }
-            });
-        };
-
-        // Status Change
-        function driverInspections(id) {
-            var url = '{{ route('inspection.details', ':email') }}';
-            $.ajax({
-                type: "GET",
-                url: url.replace(':email', email),
-                success: function(resp) {
-                    // Reloade DataTable
-                    $('#data-table').DataTable().ajax.reload();
-                    if (resp.success === true) {
-                        // show toast message
-                        toastr.success(resp.message);
-                    } else if (resp.errors) {
-                        toastr.error(resp.errors[0]);
-                    } else {
-                        toastr.error(resp.message);
-                    }
-                }, 
-                error: function(error) {
-                    // location.reload();
-                } // Error
-            })
-        }
-</script> --}}
-
-    
 @endpush

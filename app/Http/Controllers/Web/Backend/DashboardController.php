@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Web\Backend;
 
 use App\Models\User;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Models\Inspection;
+use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
+use App\Http\Controllers\Controller;
 use Yajra\DataTables\Facades\DataTables;
 
 class DashboardController extends Controller
@@ -43,7 +44,7 @@ class DashboardController extends Controller
     public function showAllInspections(Request $request , $email){
 
         $allInspections = Inspection::where('email',$email)->get();
-
+        $driverName = User::where('email', $email)->first();
         // if ($request->ajax()) {
         //     $data = User::where('status','0')->get();
 
@@ -66,7 +67,31 @@ class DashboardController extends Controller
             
         //     ->make(true);
         // }
-        return view('backend.layouts.driver.inspection', compact('allInspections'));
+        return view('backend.layouts.driver.inspection', compact('allInspections','driverName'));
+    }
+
+    public function pdf_inspection(Request $request , $id){
+        
+        $inspection = Inspection::where('id',$id)->with('user')->first();
+
+
+        // dd($inspection->user->name);
+
+        $tractorCategory = explode(',', $inspection->tractor_category);
+
+        $tailorCategory = explode(',', $inspection->trailer_category);
+
+        $data = [
+            'inspection' => $inspection,
+            'tractorCategory' => $tractorCategory,
+            'tailorCategory' => $tailorCategory,
+        ];
+
+        $pdf = Pdf::loadView('backend.layouts.driver.pdfInspection', $data);
+        return $pdf->download('Inspection.pdf');
+
+        // return view('', compact(''));
+
     }
 
 }
