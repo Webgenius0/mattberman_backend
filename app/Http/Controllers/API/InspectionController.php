@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Models\User;
 use App\Models\Inspection;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -18,19 +19,18 @@ class InspectionController extends Controller
     {
         $validator = Validator::make($request->all(), [
 
-            'carrier' => 'required|string|max:255',
-            'address' => 'required|string|max:255',
-            'date' => 'required|string|max:255',
-            'start_time' => 'required',
-            'end_time' => 'required',
-            'tractor_category' => 'required|string',
-            'truck_on' => 'required',
-            'odometer_reading' => 'required|string|max:255',
-            'trailer_category' => 'required|string|max:255',
-            'trailer_no' => 'required',
-            'remark' => 'required',
-            'signature_image' => 'required',
-
+            'carrier' => 'nullable|string|max:255',
+            'address' => 'nullable|string|max:255',
+            'date' => 'nullable|string|max:255',
+            'start_time' => 'nullable',
+            'end_time' => 'nullable',
+            'tractor_category' => 'nullable|string',
+            'truck_on' => 'nullable',
+            'odometer_reading' => 'nullable|string|max:255',
+            'trailer_category' => 'nullable|string|max:255',
+            'trailer_no' => 'nullable',
+            'remark' => 'nullable',
+            'signature_image' => 'nullable',
         ]);
 
         if ($validator->fails()) {
@@ -68,34 +68,39 @@ class InspectionController extends Controller
             'signature_image'=> $filePath,
             
         ]);
+        if ($inspection->save()) {
 
         // For testing purposes, return the OTP in the response
         return response()->json([
-
             'status'    => true,
             'message'   => 'Inspection creation completed.',
             'code'      => '200',
-
         ], 200);
+        } else {
+            return response()->json([
+                'status'=> false,
+                'message'=> 'Inspection creation failed',
+                'code'=> '422',
+            ], 422);
+        }
     }
 
 
     public function update(Request $request , $id)
     {
-
         $validator = Validator::make($request->all(), [
-            'carrier' => 'required|string|max:255',
-            'address' => 'required|string|max:255',
-            'date' => 'required|string|max:255',
-            'start_time' => 'required',
-            'end_time' => 'required',
-            'tractor_category' => 'required|string',
-            'truck_on' => 'required',
-            'odometer_reading' => 'required|string|max:255',
-            'trailer_category' => 'required|string|max:255',
-            'trailer_no' => 'required',
-            'remark' => 'required',
-            'signature_image' => 'required',
+            'carrier' => 'nullable|string|max:255',
+            'address' => 'nullable|string|max:255',
+            'date' => 'nullable|string|max:255',
+            'start_time' => 'nullable',
+            'end_time' => 'nullable',
+            'tractor_category' => 'nullable|string',
+            'truck_on' => 'nullable',
+            'odometer_reading' => 'nullable|string|max:255',
+            'trailer_category' => 'nullable|string|max:255',
+            'trailer_no' => 'nullable',
+            'remark' => 'nullable',
+            'signature_image' => 'nullable',
         ]);
 
 
@@ -146,9 +151,68 @@ class InspectionController extends Controller
 
     }
 
+
+    public function showAllInspections(Request $request){
+
+        $email = Auth::user()->email;
+        $allInspections = Inspection::where('email',$email)->get();
+        $driverName = User::where('email', $email)->pluck('name','id')->first();
+
+        $data = [
+            'inspection'=> $allInspections,
+            'driver'=> $driverName,
+        ];
+
+        return response()->json(
+            [
+                'data' => $data,
+                'message' => 'Driver name and inspection retrieved successfully',
+                 'code' => 200,
+            ],
+            200);
+        // return view('backend.layouts.driver.inspection', compact('allInspections','driverName'));
+    }
+
+
+
+    public function pdf_inspection(Request $request , $id){
+        
+        $inspection = Inspection::where('id',$id)->with('user')->first();
+
+        $tractorCategory = explode(',', $inspection->tractor_category);
+
+        $tailorCategory = explode(',', $inspection->trailer_category);
+
+        $data = [
+            'inspection' => $inspection,
+            'tractorCategory' => $tractorCategory,
+            'tailorCategory' => $tailorCategory,
+        ];
+
+        
+        $pdf = Pdf::loadView('backend.layouts.driver.pdfInspection', $data);
+
+        $fileName = 'inspection_' . time() . '.pdf';
+
+        $pdfPath = public_path('upload/' . $fileName);
+        $pdf->save($pdfPath);
+        $pdfPath = asset('upload/' . $fileName);
+
+        return response()->json([
+                    'status'=> true,
+                    'message'=> 'PDF generated successfully',
+                    'data' => [
+                        'link' => $pdfPath,
+                        ],
+                    'code'=> '200',
+                    ],200); 
+
+    }
+
+
     public function destroy($id)
     {
-        try{
+        try{ 
             $driver = Inspection::find($id);
 
             $driver->delete();

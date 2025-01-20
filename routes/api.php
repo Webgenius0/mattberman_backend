@@ -21,6 +21,8 @@ Route::middleware('auth:api')->group(function () {
     Route::controller(InspectionController::class)->group(function () {
         Route::post('/inspection-store', 'store');
         Route::post('/inspection-update/{id}', 'update');
+        Route::get('/inspection', 'showAllInspections');
+        Route::get('/inspection-pdf/{id}', 'pdf_inspection');
         Route::delete('/inspection-delete/{id}', 'destroy');
     });
 
