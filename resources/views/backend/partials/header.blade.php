@@ -35,7 +35,6 @@
             <li><a href="#"><i data-feather="settings"></i><span>Settings</span></a></li>
             <form action="{{route('logout')}}" method="post">
               @csrf
-              {{-- <li><a href=""><i data-feather="log-in"> </i><span>Log out</span></a></li> --}}
               <li><button><i data-feather="log-in"> </i><span>Log out</span></button></li>
             </form>
           </ul>
