@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\API\Auth\AuthController;
 use App\Http\Controllers\API\InspectionController;
-
+use App\Http\Controllers\API\SettingController;
 
 Route::controller(AuthController::class)->group(function () {
     Route::post('/register', 'register');
@@ -26,7 +26,26 @@ Route::middleware('auth:api')->group(function () {
         Route::delete('/inspection-delete/{id}', 'destroy');
     });
 
+
+    Route::controller(SettingController::class)->group(function (){
+        Route::get('/privacy-policy', 'privacyView');
+        Route::get('/terms-and-conditions', 'TermsView');
+        
+    });
+ 
+
     Route::post('/logout', [AuthController::class,'logout']);
 
 });
+
+
+Route::controller(SettingController::class)->group(function (){
+    Route::get('/privacy-policy-show', 'privacyShow');
+    Route::get('/terms-conditions-show', 'TermsShow');
+    
+});
+
+
+
+
 

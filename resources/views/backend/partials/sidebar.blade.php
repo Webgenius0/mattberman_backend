@@ -29,8 +29,8 @@
               <ul class="sidebar-submenu">
                 <li><a class=""  href="#">Edit Profile</a></li>
                 <li><a class="" href="#">Change Password</a></li>
-                <li><a class="" href="#">Privacy Policy</a></li>
-                <li><a class="" href="#">Terms and Conditions</a></li>
+                <li><a class="" href="{{route('admin.privacypolicy')}}">Privacy Policy</a></li>
+                <li><a class="" href="{{route('admin.term&condition')}}">Terms and Conditions</a></li>
               </ul>
             </li>
           </ul>
