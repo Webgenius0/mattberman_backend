@@ -172,7 +172,7 @@
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#"><i data-feather="home"></i></a></li>
+            <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}"><i data-feather="home"></i></a></li>
             <li class="breadcrumb-item"> Apps</li>
             <li class="breadcrumb-item active">DocuDriver</li>
           </ol>
@@ -204,7 +204,7 @@
                                 </div>
                                 <input type="hidden" name='status' value="1">
                             </div>
-                            <button type="submit">Privacy Policey</button>
+                            <button type="submit">Privacy Policy</button>
                         </div>
                     </form>
                 </div>

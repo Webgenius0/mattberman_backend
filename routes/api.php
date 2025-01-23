@@ -28,15 +28,16 @@ Route::middleware('auth:api')->group(function () {
 
 
     Route::controller(SettingController::class)->group(function (){
+        Route::post('/profile-update','admin_profile_update');
+        Route::get('/profileData','getProfileData');
         Route::get('/privacy-policy', 'privacyView');
         Route::get('/terms-and-conditions', 'TermsView');
-        
     });
- 
+
 
     Route::post('/logout', [AuthController::class,'logout']);
-
-});
+ 
+ });
 
 
 Route::controller(SettingController::class)->group(function (){

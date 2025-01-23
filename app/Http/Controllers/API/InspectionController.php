@@ -61,7 +61,7 @@ class InspectionController extends Controller
             'end_time'=> $request->input('end_time'),
             'tractor_category'=> $request->input('tractor_category'),
             'truck_no'=> $request->input('truck_on'),
-            'odometer_reading'=> $request->input('odometer_reading'),
+            'odometer_reading'=> $request->input('odometer_reading'), 
             'trailer_category'=> $request->input('trailer_category'),
             'trailer_no'=> $request->input('trailer_no'),
             'remark'=> $request->input('remark'),
@@ -206,7 +206,6 @@ class InspectionController extends Controller
                         ],
                     'code'=> '200',
                     ],200); 
-
     }
 
 
@@ -230,4 +229,5 @@ class InspectionController extends Controller
                     ],502);
                 }
     }
+    
 }

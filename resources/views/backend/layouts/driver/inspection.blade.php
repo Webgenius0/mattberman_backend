@@ -10,7 +10,7 @@
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#"><i data-feather="home"></i></a></li>
+            <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}"><i data-feather="home"></i></a></li>
             <li class="breadcrumb-item"> Apps</li>
             <li class="breadcrumb-item active">DocuDriver</li>
           </ol>

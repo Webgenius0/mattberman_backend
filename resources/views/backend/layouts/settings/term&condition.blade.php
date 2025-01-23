@@ -37,7 +37,7 @@
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#"><i data-feather="home"></i></a></li>
+            <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}"><i data-feather="home"></i></a></li>
             <li class="breadcrumb-item"> Apps</li>
             <li class="breadcrumb-item active">DocuDriver</li>
           </ol>
@@ -69,7 +69,7 @@
                                 </div>
                                 <input type="hidden" name='status' value="2">
                             </div>
-                            <button type="submit">Term & Condition</button>
+                            <button type="submit">Terms & Conditions</button>
                         </div>
                     </form>
                 </div>

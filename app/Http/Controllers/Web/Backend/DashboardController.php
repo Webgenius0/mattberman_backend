@@ -17,6 +17,7 @@ class DashboardController extends Controller
         return view('backend.layouts.index');
     }
 
+    
     public function showAllDrivers(Request $request){
         
         if ($request->ajax()) {
@@ -37,12 +38,14 @@ class DashboardController extends Controller
         return view('backend.layouts.driver.index');
     }
 
+
     public function showAllInspections(Request $request , $email){
 
         $allInspections = Inspection::where('email',$email)->get();
         $driverName = User::where('email', $email)->first();
         return view('backend.layouts.driver.inspection', compact('allInspections','driverName'));
     }
+
 
     public function pdf_inspection(Request $request , $id){
         
@@ -64,10 +67,12 @@ class DashboardController extends Controller
 
     }
 
+
     public function privacy(){
         $page = Setting::where('status' , 1)->first();
         return view('backend.layouts.settings.privacy', compact('page'));
     }
+
 
     public function privacystore(Request $request ){
 

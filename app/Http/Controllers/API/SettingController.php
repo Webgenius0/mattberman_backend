@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Models\Setting;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
 
 class SettingController extends Controller
 {
@@ -41,6 +43,59 @@ class SettingController extends Controller
     public function TermsShow(Request $request ){
         $page = Setting::where('status',2)->first();    
         return view('backend.layouts.settings.termsview',compact('page'));
+    }
+
+
+    public function admin_profile_update(Request $request ){
+    $id = auth()->user()->id;
+        $driver = User::where("id",'=',$id)->first();
+
+        if ($driver->image != null) {
+            if (File::exists(asset('upload/'.$driver->image))) {
+                File::delete(asset('upload/'.$driver->image));
+            }
+        }
+
+        $Image = $request->file('image');
+        $extension = $request->file('image')->getClientOriginalExtension();
+        $imageName = rand(10,9999).'image.'.$extension;
+        $Image->move( public_path( 'upload/'), $imageName);
+
+        $driver->name = $request->name;
+        $driver->phone = $request->phone;
+        $driver->bio = $request->bio;
+        $driver->image = $imageName;
+        $driver->save();
+
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Successfully update.',
+        ], 200);
+
+        // return redirect()->back()->with('t-success','Data updated.');
+    }
+
+    public function getProfileData(Request $request){
+        
+        $id = auth()->user()->id;
+        $driverProfile = User::where('id',$id)->first();
+        $domain = request()->root().'/public/upload/';
+
+        $data = [
+            'id' => $driverProfile->id,
+            'name'=> $driverProfile->name,
+            'phone'=> $driverProfile->phone,
+            'bio'=> $driverProfile->bio,
+            'image'=> $domain . $driverProfile->image,
+        ];
+
+        return response()->json([
+            'success' => true,
+            'data'=> $data,
+            'message' => 'Successful get data.',
+        ], 200);
+
     }
 
 }

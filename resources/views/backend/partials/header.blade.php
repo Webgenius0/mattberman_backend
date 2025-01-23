@@ -14,7 +14,7 @@
               <li> <a href="social-app.html"> Social App</a></li>
               <li> <a href="bookmark.html"> Bookmark</a></li>
             </ul>
-          </li>
+          </li> 
         </ul> --}}
         <ul class="header-left">
           <li class="onhover-dropdown"><span class="f-w-600">Dashboard</span><span><i class="middle" data-feather="chevron-down"></i></span>
@@ -30,9 +30,9 @@
         <li class="profile-nav onhover-dropdown">
           <div class="account-user"><i data-feather="user"></i></div>
           <ul class="profile-dropdown onhover-show-div">
-            <li><a href="#"><i data-feather="user"></i><span>Account</span></a></li>
+            <li><i data-feather="user"></i><span>{{Auth::user()->name}}</span></li>
             {{-- <li><a href="#"><i data-feather="mail"></i><span>Inbox</span></a></li> --}}
-            <li><a href="#"><i data-feather="settings"></i><span>Settings</span></a></li>
+            {{-- <li><a href="#"><i data-feather="settings"></i><span>Settings</span></a></li> --}}
             <form action="{{route('logout')}}" method="post">
               @csrf
               <li><button><i data-feather="log-in"> </i><span>Log out</span></button></li>

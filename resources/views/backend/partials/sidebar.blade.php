@@ -27,8 +27,8 @@
 
             <li class="sidebar-list"><i class="fa fa-thumb-tack"></i><a class="sidebar-link sidebar-title" href="javascript:void(0)"><i data-feather="settings"></i><span class="">Settings</span></a>
               <ul class="sidebar-submenu">
-                <li><a class=""  href="#">Edit Profile</a></li>
-                <li><a class="" href="#">Change Password</a></li>
+                <li><a class=""  href="{{route('admin.profile')}}">Edit Profile</a></li>
+                <li><a class="" href="{{route('admin.password')}}">Change Password</a></li>
                 <li><a class="" href="{{route('admin.privacypolicy')}}">Privacy Policy</a></li>
                 <li><a class="" href="{{route('admin.term&condition')}}">Terms and Conditions</a></li>
               </ul>

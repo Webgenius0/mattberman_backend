@@ -19,10 +19,10 @@ return new class extends Migration
             $table->string('date')->nullable();
             $table->string('start_time')->nullable();
             $table->string('end_time')->nullable();
-            $table->string('tractor_category')->nullable();
+            $table->longText('tractor_category')->nullable();
             $table->string('truck_no')->nullable();
             $table->string('odometer_reading')->nullable();
-            $table->string('trailer_category')->nullable();
+            $table->longText('trailer_category')->nullable();
             $table->string('trailer_no')->nullable();
             $table->string('remark')->nullable();
             $table->text('signature_image')->nullable();
