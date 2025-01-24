@@ -16,10 +16,13 @@ class SettingController extends Controller
         $pagePrivacy = request()->root().'/api/privacy-policy-show';
         return response()->json([
             'success' => true,
+            
             'data' => [
                 'pageLink' => $pagePrivacy,
             ],
+
             'message' => 'Privacy policy link retrieved successfully',
+
         ], 200);
     }
 
@@ -66,6 +69,7 @@ class SettingController extends Controller
         else{
             $imageName = '';
         }
+
         $driver->name = $request->name;
         $driver->phone = $request->phone;
         $driver->bio = $request->bio;

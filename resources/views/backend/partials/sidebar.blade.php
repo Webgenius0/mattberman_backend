@@ -24,7 +24,7 @@
             </li>
 
             <li class="sidebar-list"><i class="fa fa-thumb-tack"></i><a class="sidebar-link sidebar-title link-nav" href="{{route('show.all.drivers')}}"><i data-feather="users"> </i><span>Drivers</span></a></li>
-            <li class="sidebar-list"><i class="fa fa-thumb-tack"></i><a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="upload"> </i><span>Adds</span></a></li>
+            <li class="sidebar-list"><i class="fa fa-thumb-tack"></i><a class="sidebar-link sidebar-title link-nav" href="{{route('show.all.advertisement')}}"><i data-feather="upload"> </i><span>Adds</span></a></li>
             <li class="sidebar-list"><i class="fa fa-thumb-tack"></i><a class="sidebar-link sidebar-title" href="javascript:void(0)"><i data-feather="settings"></i><span class="">Settings</span></a>
               <ul class="sidebar-submenu">
                 <li><a class=""  href="{{route('admin.profile')}}">Edit Profile</a></li>
