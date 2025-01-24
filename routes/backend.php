@@ -16,6 +16,8 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/privacy-policy-store','privacystore')->name('admin.privacystore');
         Route::get('/term-condition','term_condition')->name('admin.term&condition');
         Route::post('/term-condition-store','term_conditionstore')->name('admin.term&conditionstore');
+        // Route::get('/adds-create','adds-create')->name('admin.adds.create');
+        // Route::post('/adds-store','adds-store')->name('admin.adds.store');
     });
 
     Route::controller(ProfileController::class)->group(function () {

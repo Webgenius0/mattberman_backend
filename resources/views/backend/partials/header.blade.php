@@ -20,7 +20,7 @@
           <li class="onhover-dropdown"><span class="f-w-600">Dashboard</span><span><i class="middle" data-feather="chevron-down"></i></span>
             <ul class="onhover-show-div left-dropdown">
               <li> <a href="{{route('admin.dashboard')}}">Default</a></li>
-            </ul>
+            </ul> 
           </li>
         </ul>
       </div>

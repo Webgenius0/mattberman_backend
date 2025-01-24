@@ -47,6 +47,7 @@ class SettingController extends Controller
 
 
     public function admin_profile_update(Request $request ){
+
     $id = auth()->user()->id;
         $driver = User::where("id",'=',$id)->first();
 
@@ -56,11 +57,15 @@ class SettingController extends Controller
             }
         }
 
-        $Image = $request->file('image');
-        $extension = $request->file('image')->getClientOriginalExtension();
-        $imageName = rand(10,9999).'image.'.$extension;
-        $Image->move( public_path( 'upload/'), $imageName);
-
+        if ( $request->file('image') != null) {
+            $Image = $request->file('image');
+            $extension = $request->file('image')->getClientOriginalExtension();
+            $imageName = rand(10,9999).'image.'.$extension;
+            $Image->move( public_path( 'upload/'), $imageName);
+        }
+        else{
+            $imageName = '';
+        }
         $driver->name = $request->name;
         $driver->phone = $request->phone;
         $driver->bio = $request->bio;
@@ -80,11 +85,18 @@ class SettingController extends Controller
         
         $id = auth()->user()->id;
         $driverProfile = User::where('id',$id)->first();
-        $domain = request()->root().'/public/upload/';
+        // $domain = request()->root().'/public/upload/';
+
+        if ($driverProfile->image != null) {
+            $domain = request()->root().'/public/upload/';
+        }else{
+            $domain = '';
+        }
 
         $data = [
             'id' => $driverProfile->id,
             'name'=> $driverProfile->name,
+            'email' => $driverProfile->email,
             'phone'=> $driverProfile->phone,
             'bio'=> $driverProfile->bio,
             'image'=> $domain . $driverProfile->image,
