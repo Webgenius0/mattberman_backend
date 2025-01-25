@@ -19,6 +19,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/term-condition-store','term_conditionstore')->name('admin.term&conditionstore');
     });
 
+
     // Route::controller(AdvertisementController::class)->group(function () {
 
     //     Route::get('/adds-create','adds_create')->name('admin.adds.create');
@@ -27,6 +28,7 @@ Route::middleware(['auth'])->group(function () {
     //     Route::delete('/adds-delete/{id}','deleteAdvertisement')->name('advertisement.destroy');
     // });
 
+    
     Route::controller(AdvertisementController::class)->group(function () {
         Route::get('/adds-create', 'adds_create')->name('admin.adds.create');
         Route::post('/adds-store', 'adds_store')->name('admin.adds.store');
@@ -45,3 +47,5 @@ Route::middleware(['auth'])->group(function () {
     });
 
 });
+
+

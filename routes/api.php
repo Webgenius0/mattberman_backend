@@ -24,6 +24,7 @@ Route::middleware('auth:api')->group(function () {
         Route::get('/inspection', 'showAllInspections');
         Route::get('/inspection-pdf/{id}', 'pdf_inspection');
         Route::delete('/inspection-delete/{id}', 'destroy');
+        Route::get('/addshow', 'showAllAdds');
     });
 
 
@@ -32,6 +33,8 @@ Route::middleware('auth:api')->group(function () {
         Route::get('/profileData','getProfileData');
         Route::get('/privacy-policy', 'privacyView');
         Route::get('/terms-and-conditions', 'TermsView');
+        Route::get('/profile-password','password');
+        Route::post('/profile-update-password','changePassword');
     });
 
 

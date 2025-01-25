@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Models\User;
 use App\Models\Inspection;
+use App\Models\Advertisemen;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Http\Controllers\Controller;
@@ -98,7 +99,7 @@ class InspectionController extends Controller
             'truck_on' => 'nullable',
             'odometer_reading' => 'nullable|string|max:255',
             'trailer_category' => 'nullable|string|max:255',
-            'trailer_no' => 'nullable',
+            'trailer_no' => 'nullable', 
             'remark' => 'nullable',
             'signature_image' => 'nullable',
         ]);
@@ -230,4 +231,33 @@ class InspectionController extends Controller
                 }
     }
     
+
+    public function showAllAdds(Request $request){
+
+        // $email = Auth::user()->email;
+        $data = Advertisemen::get();
+        // $allInspections = Inspection::where('email',$email)->get();
+        // $driverName = User::where('email', $email)->pluck('name','id')->first();
+
+        // $data = [
+        //     'inspection'=> $allInspections,
+        //     'driver'=> $driverName,
+        // ];
+        foreach ($data as $key => $value) {
+        $path = asset('upload/' . $value->image);
+                // $img[] = '<img src="' . $path . '" width="120px" alt="Advertisement Image"/>';
+                $img[] = $path;
+
+        }
+        return response()->json(
+            [
+                'data' => $img,
+                'message' => 'Adds retrieved successfully',
+                 'code' => 200,
+            ],
+            200);
+        // return view('backend.layouts.driver.inspection', compact('allInspections','driverName'));
+    }
+
+
 }

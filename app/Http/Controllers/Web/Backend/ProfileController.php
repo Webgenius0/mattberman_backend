@@ -18,7 +18,7 @@ class ProfileController extends Controller
     }
 
     public function admin_profile_update(Request $request){
-        $admin = User::where("status",operator: "=","1")->first();
+        $admin = User::where("status", "=","1")->first();
 
         if ($admin->image != null) {
             if (File::exists(asset('upload/'.$admin->image))) {

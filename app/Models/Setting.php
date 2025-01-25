@@ -8,6 +8,6 @@ class Setting extends Model
 {
     //
     protected $fillable = [
-        'title' , 'body' , 'status'
+        'title' , 'body' , 'status',
     ];
 }

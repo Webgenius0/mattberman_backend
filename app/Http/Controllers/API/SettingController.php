@@ -7,6 +7,9 @@ use App\Models\Setting;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Facades\Validator;
 
 class SettingController extends Controller
 {
@@ -112,6 +115,47 @@ class SettingController extends Controller
             'message' => 'Successful get data.',
         ], 200);
 
+    }
+
+    public function changePassword(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'oldPass' => 'required',
+            'password' => 'required|min:8|confirmed',
+            ]);
+
+
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status'=> false,
+                'message'=> 'Validation error',
+                'errors'=> $validator->errors(),
+                'code'=> '422',
+                ], 422);
+            }
+
+        $email = auth()->user()->email;
+        $user = User::where('email', $email)
+            ->first();
+
+
+                if (!$user) {
+                    return response()->json([
+                        'status'=> false,
+                        'message'=> 'Something goes wrong.',
+                        'code'=> '422',
+                        ], 422);
+                }
+                $user->password = bcrypt($request->password);
+                $user->save();
+
+                return response()->json([
+                    'status'=> false,
+                    'message'=> 'successfully Change.',
+                    'code'=> '200',
+                    ], 200);
+                    
     }
 
 }
