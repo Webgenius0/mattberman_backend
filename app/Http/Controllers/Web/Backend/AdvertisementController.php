@@ -17,9 +17,6 @@ class AdvertisementController extends Controller
 
     public function adds_store(Request $request){
         $add = new Advertisemen;
-        // $add->name = $request->name;
-        // $add->description = $request->description;
-       
 
         if ( $request->file('photo') != null) {
             $Image = $request->file('photo');
@@ -30,11 +27,7 @@ class AdvertisementController extends Controller
         else{
             $imageName = '';
         }
-
-        // $add->name = $request->name;
-        // $add->phone = $request->phone;
-        // $add->bio = $request->bio;
-
+        
         $add->image = $imageName;
         $add->save();
 
@@ -82,6 +75,7 @@ class AdvertisementController extends Controller
             ->make(true);
     }
     return view('backend.layouts.adds.index');
+    // return redirect()->back();
 }
 
 

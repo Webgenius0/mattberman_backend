@@ -19,22 +19,24 @@ class ProfileController extends Controller
 
     public function admin_profile_update(Request $request){
         $admin = User::where("status", "=","1")->first();
+        $Image = $request->file('photo');
 
-        if ($admin->image != null) {
+        if ($admin->image != null && $Image != null) {
             if (File::exists(asset('upload/'.$admin->image))) {
                 File::delete(asset('upload/'.$admin->image));
             }
         }
-
-        $Image = $request->file('photo');
-        $extension = $request->file('photo')->getClientOriginalExtension();
-        $imageName = rand(10,9999).'photo.'.$extension;
-        $Image->move( public_path( 'upload/'), $imageName);
+        if ($Image != null) {
+            $extension = $request->file('photo')->getClientOriginalExtension();
+            $imageName = rand(10,9999).'photo.'.$extension;
+            $Image->move( public_path( 'upload/'), $imageName);
+        }else{
+            $imageName = $admin->image;
+        }
 
         $admin->name = $request->name;
         $admin->image = $imageName;
         $admin->save();
-
         return redirect()->back()->with('t-success','Data updated.');
     }
 
