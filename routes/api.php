@@ -25,6 +25,7 @@ Route::middleware('auth:api')->group(function () {
         Route::get('/inspection-pdf/{id}', 'pdf_inspection');
         Route::delete('/inspection-delete/{id}', 'destroy');
         Route::get('/addshow', 'showAllAdds');
+        Route::post('/updateCount', 'updateCount');
     });
 
 
@@ -46,7 +47,6 @@ Route::middleware('auth:api')->group(function () {
 Route::controller(SettingController::class)->group(function (){
     Route::get('/privacy-policy-show', 'privacyShow');
     Route::get('/terms-conditions-show', 'TermsShow');
-    
 });
 
 

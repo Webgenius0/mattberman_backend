@@ -40,7 +40,7 @@
                     <thead>
                         <tr>
                             <th>Image</th>
-                            {{-- <th>Status</th> --}}
+                            <th>Url</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -74,6 +74,7 @@
             ajax: '{{ route('show.all.advertisement') }}',
             columns: [
                 { data: 'image', name: 'photo' },
+                { data: 'details', name: 'details' },
                 // { data: 'email', name: 'email' },
                 { data: 'action', name: 'action',  }
             ]

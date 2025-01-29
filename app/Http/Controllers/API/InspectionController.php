@@ -244,14 +244,23 @@ class InspectionController extends Controller
         //     'driver'=> $driverName,
         // ];
         foreach ($data as $key => $value) {
-        $path = asset('upload/' . $value->image);
-                // $img[] = '<img src="' . $path . '" width="120px" alt="Advertisement Image"/>';
-                $img[] = $path;
-
+            $adds[$key] =['img' => asset('upload/' . $value->image),
+             'id' => $value->id ,
+             'url' => $value->details,
+             'count'=> $value->count] ;
+        // $path = asset('upload/' . $value->image);
+        //         // $img[] = '<img src="' . $path . '" width="120px" alt="Advertisement Image"/>';
+        //         $img[] = $path;
+        //         $id[] = $value->id;
+        //         $count[] = $value->count;
         }
+
         return response()->json(
             [
-                'data' => $img,
+                'adds' => $adds,
+                // 'image' => $img,
+                // 'id' => $id,
+                // 'count'=> $count,
                 'message' => 'Adds retrieved successfully',
                  'code' => 200,
             ],
@@ -259,5 +268,17 @@ class InspectionController extends Controller
         // return view('backend.layouts.driver.inspection', compact('allInspections','driverName'));
     }
 
+    public function updateCount(Request $request){
+        $data = Advertisemen::find($request->id);
+        $data->count = $request->count;
+        $data->save();
+        return response()->json([
+            'status'=> true,
+            'message'=> 'Count update successful.',
+            'code'=> 200,
+            ],200);
+    }
 
 }
+
+

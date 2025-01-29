@@ -1,6 +1,6 @@
 <div class="sidebar-wrapper">
     <div>
-      <div class="logo-wrapper"><a href="#"><img class="img-fluid for-light" src="{{asset('build/assets/logo/logo.png')}}" alt="" width="80px"></a>
+      <div class="logo-wrapper"><a href="#"><img class="img-fluid for-light" src="{{asset('build/assets/logo/logo.png')}}" alt="" width="80px"></a> 
         <div class="back-btn"><i data-feather="grid"></i></div>
         <div class="toggle-sidebar icon-box-sidebar"><i class="status_toggle middle sidebar-toggle" data-feather="grid"> </i></div>
       </div>
@@ -39,3 +39,4 @@
       </nav>
     </div>
   </div>
+

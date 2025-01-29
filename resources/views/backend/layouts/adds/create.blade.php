@@ -51,11 +51,12 @@
                                     @error('photo') <p style="color: red;">{{ $message }}</p> @enderror
                                     {{-- <img src="{{asset('upload/'.$advertisement->image)}}" alt="photo" width="200px" height="auto"/> --}}
                                 </div>
-                                {{-- <div class="col-md-12 mb-3">
-                                    <label for="detaile">Details</label>
-                                    <textarea name="detaile" id="detaile" rows="10" required>{{ $page ? $page->body : old('detaile') }}</textarea>
+                                <div class="col-md-12 mb-3">
+                                    <label for="detaile">Urls</label>
+                                    <input type="text" name="url" class=" col-md-12 " />
+                                    {{-- <textarea name="detaile" id="detaile" rows="10" required>{{ $page ? $page->body : old('detaile') }}</textarea> --}}
                                     @error('detaile') <p style="color: red;">{{ $message }}</p> @enderror
-                                </div> --}}
+                                </div>
 
                             </div>
                             <button type="submit">Add</button>

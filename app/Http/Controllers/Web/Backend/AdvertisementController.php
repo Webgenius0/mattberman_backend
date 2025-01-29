@@ -29,6 +29,7 @@ class AdvertisementController extends Controller
         }
         
         $add->image = $imageName;
+        $add->details = $request->url;
         $add->save();
 
         return view("backend.layouts.adds.index", compact("add"));
@@ -114,7 +115,11 @@ class AdvertisementController extends Controller
         try {
             $advertisement = Advertisemen::findOrFail($id);
             $advertisement->delete();
-            return redirect()->back()->with("t-success","Advertisement deleted.");
+            return redirect()->route('show.all.advertisement');
+            // return response()->json([
+            //     'message'=> 'success'
+            //     ]);
+            // return redirect()->back()->with("t-success","Advertisement deleted.");
             
         } catch (\Exception $e) {
             return redirect()->back()->with("t-error","Advertisement not deleted.");
