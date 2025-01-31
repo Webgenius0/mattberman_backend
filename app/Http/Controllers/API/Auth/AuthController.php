@@ -28,7 +28,7 @@ class AuthController extends Controller
                 'status'    => false,
                 'message'   => 'Validation errors',
                 'errors'    => $validator->errors(),
-                'code'      => '422',
+                'code'      => '422', //sertggrtghrdhty tdyhdrthdrgh rthrtyhrtyhrteryrtdhyrdt
             ], 422);
         }
 
