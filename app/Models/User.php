@@ -15,12 +15,12 @@ class User extends Authenticatable implements JWTSubject
 
     public function getJWTIdentifier()
     {
-        return $this->getKey(); // Typically the primary key (e.g., id)
+        return $this->getKey();
     }
 
     public function getJWTCustomClaims()
     {
-        return []; // Add custom claims if necessary
+        return [];
     }
 
     /**
@@ -31,6 +31,9 @@ class User extends Authenticatable implements JWTSubject
     protected $fillable = [
         'name',
         'email',
+        'image',
+        'phone',
+        'bio',
         'password',
         'otp',
         'is_verified',
@@ -57,5 +60,9 @@ class User extends Authenticatable implements JWTSubject
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function inspection(){
+        return $this->hasMany(Inspection::class);
     }
 }

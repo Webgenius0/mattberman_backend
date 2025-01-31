@@ -12,7 +12,7 @@
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html"><i data-feather="home"></i></a></li>
+            <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}"><i data-feather="home"></i></a></li>
             <li class="breadcrumb-item"> Apps</li>
             <li class="breadcrumb-item active">DocuDriver</li>
           </ol>
@@ -38,10 +38,10 @@
           <div class="card-header pb-0">
             <div class="d-flex"> 
               <div class="flex-grow-1"> 
-                <h4>Main Body</h4>
+                {{-- <h4>Main Body</h4> --}}
               </div>
             </div>
-            <p class="mb-0">Body contants.</p>
+            <p class="mb-0">Hello mr.{{Auth::user()->name}}</p>
           </div>
           <div class="card-body pb-0">                   
             <div id="demo2"></div>
@@ -309,5 +309,4 @@
       </div>
     </script>
     <script class="empty-template" type="text/x-handlebars-template"><div class="EmptyMessage">Your Docu Driver!</div></script>
-  </div>
 @endsection

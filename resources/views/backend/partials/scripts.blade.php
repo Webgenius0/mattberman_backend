@@ -36,3 +36,9 @@
 <!-- Template js-->
 <script src="{{asset('/backend/assets/js/script.js')}}"></script>
 <script src="{{asset('/backend/assets/js/theme-customizer/customizer.js')}}">  </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.0/jszip.min.js"></script>
+
+@stack('script')

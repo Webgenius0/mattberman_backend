@@ -13,8 +13,7 @@ class sendOTPResetPassword extends Mailable
 {
     use Queueable, SerializesModels;
 
-
-    protected $otp;
+    public $otp;
 
     /**
      * Create a new message instance.
@@ -25,33 +24,40 @@ class sendOTPResetPassword extends Mailable
         $this->otp = $otp;
     }
 
+
+    public function build()
+    {
+        return $this->subject('Send O T P Reset Password')
+                    ->view('auth.mail.resetPasswordOtp'); // Refer to the email view
+    }
+
     /**
      * Get the message envelope.
      */
-    public function envelope(): Envelope
-    {
-        return new Envelope(
-            subject: 'Send O T P Reset Password',
-        );
-    }
+    // public function envelope(): Envelope
+    // {
+    //     return new Envelope(
+    //         subject: 'Send O T P Reset Password',
+    //     );
+    // }
 
-    /**
-     * Get the message content definition.
-     */
-    public function content(): Content
-    {
-        return new Content(
-            view: 'view.name',
-        );
-    }
+    // /**
+    //  * Get the message content definition.
+    //  */
+    // public function content(): Content
+    // {
+    //     return new Content(
+    //         view: 'view.name',
+    //     );
+    // }
 
-    /**
-     * Get the attachments for the message.
-     *
-     * @return array<int, \Illuminate\Mail\Mailables\Attachment>
-     */
-    public function attachments(): array
-    {
-        return [];
-    }
+    // /**
+    //  * Get the attachments for the message.
+    //  *
+    //  * @return array<int, \Illuminate\Mail\Mailables\Attachment>
+    //  */
+    // public function attachments(): array
+    // {
+    //     return [];
+    // }
 }
