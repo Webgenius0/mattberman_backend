@@ -1,6 +1,6 @@
 @extends('backend.app')
 
-@section('title','Dashboard')
+@section('title','Dashboard of DocuDriver')
 
 @section('content')
 <div class="container-fluid">
